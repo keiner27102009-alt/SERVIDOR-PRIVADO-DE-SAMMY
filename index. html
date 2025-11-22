@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Servidor Privado de Dami</title>
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 50px;
+        background: #e8e8e8;
+    }
+    .hidden { display: none; }
+    button {
+        padding: 12px 25px;
+        margin: 12px;
+        font-size: 18px;
+        border-radius: 10px;
+        border: none;
+        background: #ff5722;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    input {
+        padding: 10px;
+        width: 250px;
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+
+<!-- PANTALLA 1 -->
+<div id="pantalla1">
+    <h1>SERVIDOR PRIVADO DE SAMMY</h1>
+    <p>Ingresa tu usuario de Dibujador:</p>
+    <input id="usuario" type="text" placeholder="Tu usuario...">
+    <br><br>
+    <button onclick="continuar()">Continuar</button>
+</div>
+
+<!-- PANTALLA 2 -->
+<div id="pantalla2" class="hidden">
+    <h2>Completa las siguientes acciones:</h2>
+    <button onclick="accion(1)">Darle Like</button><br>
+    <button onclick="accion(2)">Comentar</button><br>
+    <button onclick="accion(3)">Guardar el video</button><br>
+    <button onclick="accion(4)">Seguirme</button><br><br>
+
+    <button id="desbloquear" class="hidden" onclick="mostrarPantalla3()">Desbloquear Video</button>
+</div>
+
+<!-- PANTALLA 3 -->
+<div id="pantalla3" class="hidden">
+    <h2>Todo listo</h2>
+    <button onclick="abrirServidor()">Abrir servidor privado de Roblox</button>
+</div>
+
+<script>
+    let accionesCompletadas = 0;
+
+    function continuar() {
+        let user = document.getElementById("usuario").value.trim();
+        if (user === "") {
+            alert("Ingresa tu usuario primero");
+            return;
+        }
+
+        document.getElementById("pantalla1").classList.add("hidden");
+        document.getElementById("pantalla2").classList.remove("hidden");
+    }
+
+    function accion(num) {
+        // Abrir enlaces correspondientes
+        if (num === 1) window.open("TU_LINK_DEL_VIDEO", "_blank");
+        if (num === 2) window.open("TU_LINK_DE_COMENTARIOS", "_blank");
+        if (num === 3) window.open("TU_LINK_DE_GUARDADO", "_blank");
+        if (num === 4) window.open("TU_LINK_DE_TIKTOK", "_blank");
+
+        accionesCompletadas++;
+        if (accionesCompletadas >= 4) {
+            document.getElementById("desbloquear").classList.remove("hidden");
+        }
+    }
+
+    function mostrarPantalla3() {
+        document.getElementById("pantalla2").classList.add("hidden");
+        document.getElementById("pantalla3").classList.remove("hidden");
+    }
+
+    function abrirServidor() {
+        let links = [
+            "https://www.roblox.com/share?code=3d317fc9027f6447bc0103151aca65c3&type=Server",
+            "https://www.roblox.com/share?code=aa7fe5eb061d024eaf954cfe32610af6&type=Server"
+        ];
+        let enlaceFinal = links[Math.floor(Math.random() * links.length)];
+        window.location.href = enlaceFinal;
+    }
+</script>
+
+</body>
+</html>
